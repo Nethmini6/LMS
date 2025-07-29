@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 function AddBook({ onAddBook }) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [date, setDate] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title.trim() && author.trim()) {
-      onAddBook({ title, author });
+    if (title.trim() && author.trim() && date) {
+      onAddBook({ title, author, date});
       setTitle('');
       setAuthor('');
+      setDate('');
     }
   };
 
@@ -28,6 +30,14 @@ function AddBook({ onAddBook }) {
         placeholder="Author"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
+        required
+      />
+
+      <input
+        type="date"
+        placeholder="Date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
         required
       />
       <button type="submit">Add Book</button>
