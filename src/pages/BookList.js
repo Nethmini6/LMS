@@ -1,7 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function BookList({ books, onDelete }) {
-  return (
+
+function BookList({ books, onDelete, onAdd }) {
+    const navigate = useNavigate();
+    const handleAdd = () => {
+    navigate('/add');
+    };
+    return (
     <div>
       <h2>Book List</h2>
       {books.length === 0 ? <p>No books available.</p> : null}
@@ -12,11 +18,14 @@ function BookList({ books, onDelete }) {
             <button onClick={() => onDelete(book.id)} style={{ marginLeft: '10px' }}>
               Delete
             </button>
+            <button onClick={handleAdd} style={{ marginLeft: '10px' }}>
+              Add
+            </button>
           </li>
         ))}
       </ul>
     </div>
-  );
+   );
 }
 
 export default BookList;

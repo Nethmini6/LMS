@@ -4,8 +4,11 @@ body {
   margin: 0;
   padding: 20px;
   background-size: cover;
-  
-  
+  background-image: url(C:\Users\hp\Desktop\react\LMS\src\assets\backg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
 
 }
 
@@ -14,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4CAF50;
+  background-color: #609bee;
   color: rgb(29, 18, 72);
   height: 60px;
   padding: 15px 30px;
@@ -38,7 +41,7 @@ body {
 }
 
 .nav-links a {
-  color: rgb(137, 42, 42);
+  color: rgb(54, 43, 100);
   text-decoration: none;
   text-decoration-color: rgb(38, 19, 89);
   font-weight: 500;
@@ -49,7 +52,7 @@ body {
 }
 
 h1 {
-  color: #1c236f;
+  color: #171a36;
   text-align: center;
   padding-top: 50px;
 }
@@ -72,7 +75,7 @@ input {
 
 button {
   padding: 8px;
-  background-color: #4CAF50;
+  background-color: #452ace;
   color: white;
   border: none;
   border-radius: 5px;
@@ -80,7 +83,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #597bb6;
 }
 
 ul {
