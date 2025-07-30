@@ -18,7 +18,7 @@ function BookList({ books, onDelete, onAdd }) {
             <button onClick={() => onDelete(book.id)} style={{ marginLeft: '10px' }}>
               Delete
             </button>
-            <button onClick={handleAdd} style={{ marginLeft: '10px' }}>
+            <button onClick={handleAdd} style={{ marginLeft: '30px' }}>
               Add
             </button>
           </li>

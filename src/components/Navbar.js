@@ -13,6 +13,7 @@ function Navbar() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/add">Add Book</Link></li>
         <li><Link to="/list">View Books</Link></li>
+        <li><Link to="/login">Login</Link></li>
       </ul>
     </nav>
   );
