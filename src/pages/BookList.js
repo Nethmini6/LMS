@@ -13,14 +13,19 @@ function BookList({ books, onDelete, onAdd }) {
       {books.length === 0 ? <p>No books available.</p> : null}
       <ul>
         {books.map(book => (
-          <li key={book.id}>
-            <strong>{book.title}</strong> by {book.author}
-            <button onClick={() => onDelete(book.id)} style={{ marginLeft: '10px' }}>
+          <li key={book.id} className='book-item'>
+            <div className='book-info'>
+              <strong>{book.title}</strong> by {book.author}
+            </div>
+            
+            <div className='button-group'>
+              <button onClick={() => onDelete(book.id)} style={{ marginLeft: '10px' }}>
               Delete
-            </button>
-            <button onClick={handleAdd} style={{ marginLeft: '30px' }}>
+              </button>
+              <button onClick={handleAdd} style={{ marginLeft: '30px' }}>
               Add
-            </button>
+              </button>
+            </div>
           </li>
         ))}
       </ul>

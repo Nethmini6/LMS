@@ -1,33 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import loginImage from '../assets/new2.jpg';
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
     // Basic validation (you can add more)
-    if (email === 'admin@gmail.com' && password === 'admin123') {
-      alert('Login successful!');
-      navigate('/home');
-      //direct to home 
-    } else {
-      alert('Invalid email or password');
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
     }
+
+    alert("Signup succesful! Please log in.");
+    navigate('/login');
   };
 
   return (
-  <div className='login-wrapper'>
-    <div className='login-image'>
-      <img src={loginImage} alt="Login Illustration"></img>
-    </div>
-
-    <div className="login-form">
-      <form onSubmit={handleLogin}>
-        <h2>Login</h2>
+    <div className="signup-container">
+      <h2>Signup</h2>
+      <form onSubmit={handleSignup}>
         <div className="form-group">
           <label>Email:</label>
           <input 
@@ -46,11 +41,19 @@ function Login() {
             required 
           />
         </div>
-        <button type="submit">Login</button>
+        <div className="form-group">
+          <label>Confirm Password:</label>
+          <input 
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)} 
+            required 
+          />
+        </div>
+        <button type="submit">Signup</button>
       </form>
-    </div>
     </div>
   );
 }
 
-export default Login;
+export default Signup;

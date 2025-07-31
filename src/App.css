@@ -4,8 +4,8 @@ body {
   margin: 0;
   padding: 20px;
   background-size: cover;
-  background-color: #82a3db82;
-  /*background-image: url(C:\Users\hp\Desktop\react\LMS\src\assets\new2.jpg);
+  /*background-color: #82a3db82;
+  background-image: url(C:\Users\hp\Desktop\react\LMS\src\assets\new2.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -73,6 +73,7 @@ form {
   margin-bottom: 20px;
   padding-top: 50px;
   padding-left: 50px;
+  border: none;
 }
 
 input {
@@ -81,14 +82,33 @@ input {
   border-radius: 5px;
 }
 
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.book-info {
+  flex-grow: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 5px;
+}
+
 button {
-  padding: 8px;
+  padding: 10px 16px;
   background-color: #36258c;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  
+  display: flex;
+  transition: background0color 0.2s ease;
 }
 
 button:hover {
@@ -108,12 +128,12 @@ li {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* login page style */
+/* login page style 
 .login-container {
   width: 300px;
   margin: 100px auto;
   padding: 20px;
-  border: 1px solid #180565;
+  border: none;
   border-radius: 8px;
   background: #256a98;
   
@@ -146,6 +166,113 @@ button {
   padding: 10px;
   background-color: #007bff;
   color: white;
+  text-align: justify;
+  border: none;
+  border-radius: 4px;
+}*/
+
+
+/* login css*/
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.login-image {
+  flex: 1;
+  background-color: #f0f0f0;
+}
+
+.login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: container;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+
+}
+
+.login-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.login-form form {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+
+/* signup page style */
+.signup-container {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #256a98;
+  
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 80%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 80%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
   border: none;
   border-radius: 4px;
 }
