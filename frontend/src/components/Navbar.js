@@ -7,7 +7,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="logo-section">
         <img src={logo} alt="Library Logo" className="logo-img" />
-        <h2 className="logo-text"></h2>
+        
       </div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
