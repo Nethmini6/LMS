@@ -5,13 +5,33 @@ function AddBook({ onAddBook }) {
   const [author, setAuthor] = useState('');
   const [date, setDate] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {  // <-- add async here
     e.preventDefault();
     if (title.trim() && author.trim() && date) {
-      onAddBook({ title, author, date});
-      setTitle('');
-      setAuthor('');
-      setDate('');
+      try {
+        const res = await fetch("http://localhost:5000/api/books/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title, author, date }),
+        });
+
+        const data = await res.json();
+        console.log("Book added:", data);
+
+        // Clear input fields
+        setTitle('');
+        setAuthor('');
+        setDate('');
+
+        alert("Book added successfully!");
+
+        // Optional: Call parent function to update book list
+        if (onAddBook) onAddBook(data);
+
+      } catch (err) {
+        console.error("Error adding book:", err);
+        alert("Failed to add book. Please try again.");
+      }
     }
   };
 
@@ -32,7 +52,6 @@ function AddBook({ onAddBook }) {
         onChange={(e) => setAuthor(e.target.value)}
         required
       />
-
       <input
         type="date"
         placeholder="Date"

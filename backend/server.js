@@ -1,33 +1,24 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/db");
+
 const app = express();
 const PORT = 5000;
 
+// Middleware
 app.use(cors());
-app.use(express.json()); // to parse JSON data from frontend
+app.use(express.json());
 
-// Dummy user data
-const dummyUser = {
-  email: 'admin@gmail.com',
-  password: 'admin123'
-};
+// Database
+connectDB();
 
-// Route for login
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
+// Routes
+app.use("/api/books", require("./routes/books"));
+app.use("/api/auth", require("./routes/auth"));
 
-  if (email === dummyUser.email && password === dummyUser.password) {
-    res.status(200).json({ message: 'Login successful' });
-  } else {
-    res.status(401).json({ message: 'Invalid email or password' });
-  }
+// Home route
+app.get("/", (req, res) => {
+  res.send("📚 Library Management Backend Running...");
 });
 
-/*app.get('/', (req, res) => {
-  res.send('Backend is running');
-}); */
-
-//start server 
-app.listen(PORT, () => {
-  console.log(`Server is listening on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
