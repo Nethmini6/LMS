@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route,useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route,useLocation, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import AddBook from './pages/AddBook';
 import BookList from './pages/BookList';
@@ -30,6 +30,10 @@ function AppWrapper() {
       {!hideNavbarRoutes.includes(location.pathname) && <Navbar />} {/* ✅ Appears on all pages */}
        <div className="container">
           <Routes>
+
+            {/* ✅ Default route goes to login */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
+
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
