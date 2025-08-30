@@ -47,9 +47,9 @@ function AppWrapper() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <AppWrapper />
-    </BrowserRouter>
+    </>
   );
 }
 

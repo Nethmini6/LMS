@@ -11,21 +11,22 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
+      
+      console.log('Status:', response.status);
+      console.log('Raw data:', data);
 
       if (response.ok) {
-        alert(data.message);
+        alert(data.message || "Login succesfull");
         navigate('/home');
       } else {
-        alert(data.message);
+        alert(data.message || "Login failed");
       }
     } catch (error) {
       console.error('Login error:', error);

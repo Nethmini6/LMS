@@ -21,21 +21,17 @@ router.post("/signup", async (req, res) => {
 });
 
 // Login
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  console.log('Received login:', email, password);
 
-    if (!user) return res.status(400).json({ error: "User not found" });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
-
-    const token = jwt.sign({ id: user._id }, "mysecret", { expiresIn: "1h" });
-
-    res.json({ message: "Login successful", token });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  if(email === 'admin@gmail.com' && password === 'admin123') {
+    return res.status(200).json({
+      messagege: 'Login successful',
+      user: { email} });
+  } else {
+    return res.status(401).json({ message: 'Login Faied'});
+  
   }
 });
 
