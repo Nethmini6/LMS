@@ -40,6 +40,7 @@ function AppWrapper() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/add" element={<AddBook onAddBook={addBook} />} />
             <Route path="/list" element={<BookList books={books} onDelete={deleteBook} />} />
+            <Route path="/*" element={<BooksPage />} />
           </Routes>
        </div>
   </>
