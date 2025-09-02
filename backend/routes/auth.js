@@ -21,18 +21,38 @@ router.post("/signup", async (req, res) => {
 });
 
 // Login
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  console.log('Received login:', email, password);
+router.post("/login", async(req, res) => {
+  try{
+    const { email, password } = req.body;
+    console.log('Received login:', email, password);
 
-  if(email === 'admin@gmail.com' && password === 'admin123') {
-    return res.status(200).json({
-      messagege: 'Login successful',
-      user: { email} });
-  } else {
-    return res.status(401).json({ message: 'Login Faied'});
-  
+// 1. Find user in DB
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "User not found" });
+    }
+
+    // 2. Compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // 3. Create JWT (optional, but good for auth)
+    const token = jwt.sign({ id: user._id }, "yourSecretKey", {
+      expiresIn: "1h",
+    });
+
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user: { id: user._id, username: user.username, email: user.email },
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
+
+  
 });
 
 module.exports = router;
