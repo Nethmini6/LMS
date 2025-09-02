@@ -6,7 +6,7 @@ import BookList from './pages/BookList';
 import Navbar from './components/Navbar'; // ✅ New import
 import Login from './pages/login'; // ✅ Import the login page
 import Signup from './pages/Signup'; // ✅ Import the login page
-
+import BooksPage from "./BooksPage";
 import './App.css';
 
 function AppWrapper() {
