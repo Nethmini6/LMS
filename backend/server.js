@@ -1,24 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const connectDB = require("./config/db");
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const bookRoutes = require("./routes/books");
 
 const app = express();
-const PORT = 5000;
-
-// Middleware
-app.use(cors());
 app.use(express.json());
+app.use(cors()); // allow frontend requests
 
-// Database
-connectDB();
+mongoose.connect("mongodb://localhost:27017/libraryDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected"))
+  .catch(err => console.error(err));
 
-// Routes
-app.use("/api/books", require("./routes/books"));
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/books", bookRoutes);
 
-// Home route
-app.get("/", (req, res) => {
-  res.send("📚 Library Management Backend Running...");
-});
-
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(5000, () => console.log("Server running on port 5000"));

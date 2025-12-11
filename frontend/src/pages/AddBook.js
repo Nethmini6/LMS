@@ -1,43 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 
-function AddBook({ onAddBook }) {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [date, setDate] = useState('');
+function AddBook({ onBookAdded }) {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [year, setYear] = useState("");
 
-  const handleSubmit = async (e) => {  // <-- add async here
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title.trim() && author.trim() && date) {
-      try {
-        const res = await fetch("http://localhost:5000/api/books/add", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title, author, date }),
-        });
+    try {
+      // Send POST request to backend
+      await axios.post("http://localhost:5000/api/books/add", {
+        title,
+        author,
+        year
+      });
 
-        const data = await res.json();
-        console.log("Book added:", data);
+      // Notify parent to refresh list from DB
+      onBookAdded();
 
-        // Clear input fields
-        setTitle('');
-        setAuthor('');
-        setDate('');
-
-        alert("Book added successfully!");
-
-        // Optional: Call parent function to update book list
-        if (onAddBook) onAddBook(data);
-
-      } catch (err) {
-        console.error("Error adding book:", err);
-        alert("Failed to add book. Please try again.");
-      }
+      // Clear form fields
+      setTitle("");
+      setAuthor("");
+      setYear("");
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      alert("Failed to add book. Please try again.");
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add a New Book</h2>
       <input
         type="text"
         placeholder="Title"
@@ -53,10 +46,10 @@ function AddBook({ onAddBook }) {
         required
       />
       <input
-        type="date"
-        placeholder="Date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
+        type="number"
+        placeholder="Year"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
         required
       />
       <button type="submit">Add Book</button>
